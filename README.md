@@ -1,2 +1,2 @@
 # Frontend-Practice
-For practice and Example use only
+Practice and given Tasks will be displayed here.
