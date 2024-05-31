@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+h2{
+    text-decoration: none;
+    margin: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+form{
+    margin-left: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+div {
+    margin: 5px;
+}
+
+p { margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+button{
+    margin-top: 5px;
+}
+
+
+</style>
+
+<body>
+    <div class="payment-module">
+        <h2>Payment Module</h2>
+        <form>
+            <label for="name">Enter Name:</label>
+            <input type="text" id="name" name="name"><br><br>
+            <label for="total-fees">Total Fees:</label>
+            <input type="number" id="total-fees" name="total-fees"><br><br>
+            <label for="paid-fees">Paid Fees:</label>
+            <input type="number" id="paid-fees" name="paid-fees"><br><br>
+            <label for="payment-mode">Payment mode:</label>
+
+            <div class="payment-methods">
+                <div class="payment-method">
+                    
+                    <input type="radio" id="cheque" name="payment-method" value="cheque">
+                    <label for="cheque">Cheque</label>
+                </div>
+                <div class="payment-method">
+                    <input type="radio" id="upi" name="payment-method" value="upi">
+                    <label for="upi">UPI</label>
+                </div>
+                <div class="payment-method">
+                    <input type="radio" id="cash" name="payment-method" value="cash">
+                    <label for="cash">Cash</label>
+                </div>
+            </div>
+            <p id="remaining-fees">Remaining Fees: <span id="remaining-amount">0</span></p>
+            <button id="convert-pdf">Save as PDF</button>
+        </form>
+    </div>
+
+    <script>
+        const totalFeesInput = document.getElementById('total-fees');
+        const paidFeesInput = document.getElementById('paid-fees');
+        const remainingFeesElement = document.getElementById('remaining-amount');
+        const paymentMethodSelect = document.getElementById('payment-method');
+
+        totalFeesInput.addEventListener('input', calculateRemainingFees);
+        paidFeesInput.addEventListener('input', calculateRemainingFees);
+
+        function calculateRemainingFees() {
+            const totalFees = parseInt(totalFeesInput.value);
+            const paidFees = parseInt(paidFeesInput.value);
+            const remainingFees = totalFees - paidFees;
+            remainingFeesElement.textContent = remainingFees;
+        }                                       
+
+        paymentMethodSelect.addEventListener('change', showPaymentDetails);
+
+        function showPaymentDetails() {
+            const paymentMethod = paymentMethodSelect.value;
+            console.log(`${paymentMethod} details shown`);
+        }
+
+        const convertPdfButton = document.getElementById('convert-pdf');
+        convertPdfButton.addEventListener('click', convertToPdf);
+        
+
+    </script>
+
+</body>
+</html>
