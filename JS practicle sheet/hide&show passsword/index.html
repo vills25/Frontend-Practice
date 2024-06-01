@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show/Hide Password</title>
+</head>
+<body>
+    <div>
+        <label for="password">Enter Password:</label>
+        <input type="password" id="password" value="123">
+    </div>
+    <div>
+        <input type="checkbox" id="showpassword">
+        <label for="showpassword">Show Password</label>
+    </div>
+
+    <script>
+        document.getElementById('showpassword').addEventListener('change', function() {
+    var passwordfield = document.getElementById('password');
+    if (this.checked) {
+        passwordfield.type = 'text';
+    } else {
+        passwordfield.type = 'password';
+    }
+});
+
+    </script>
+</body>
+</html>

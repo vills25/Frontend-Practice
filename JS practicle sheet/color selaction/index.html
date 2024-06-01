@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Color Picker</title>
+    <style>
+        #colorBox {
+            width: 200px;
+            height: 200px;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <label for="setcolour">Set color:</label>
+        <input type="color" id="setcolour" value="#ff00ff">
+        <button id="setcolourbutton">Set Color</button>
+    </div>
+    <div id="colorBox"></div>
+
+    <script>
+        document.getElementById('setcolourbutton').addEventListener('click', function() {
+    var selectedColor = document.getElementById('setcolour').value;
+    document.getElementById('colorBox').style.backgroundColor = selectedColor;
+});
+
+    </script>
+</body>
+</html>

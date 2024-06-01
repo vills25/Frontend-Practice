@@ -1,103 +1,187 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
+      /* Global Styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-*{
-    margin: 0;
-    padding: 0;
-}
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: #f5f5f5;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
 
-h2{
-    text-decoration: none;
-    margin: 15px;
-    font-family: Arial, Helvetica, sans-serif;
-}
+      /* Payment Module Styles */
+     .payment-module {
+        width: 80%;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
 
-form{
-    margin-left: 15px;
-    font-family: Arial, Helvetica, sans-serif;
-}
+     .payment-module h2 {
+        font-size: 2rem;
+        margin-bottom: 30px;
+        text-align: center;
+        color: #333;
+        font-weight: bold;
+      }
 
-div {
-    margin: 5px;
-}
+      /* Form Styles */
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
 
-p { margin-top: 15px;
-    margin-bottom: 5px;
-}
+      label {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+        color: #333;
+        font-weight: bold;
+      }
 
-button{
-    margin-top: 5px;
-}
+      input[type="text"],
+      input[type="number"] {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        font-size: 1.1rem;
+        width: 100%;
+      }
 
+      input[type="radio"] {
+        margin-right: 10px;
+      }
 
-</style>
+      /* Payment Details Styles */
+     .payment-details {
+        display: none;
+      }
 
-<body>
+     .payment-details label {
+        margin-top: 10px;
+      }
+
+      /* Button Styles */
+      button[type="button"] {
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 20px;
+      }
+
+      button[type="button"]:hover {
+        background-color: #45a049;
+      }
+
+      /* Responsive Styles */
+      @media (max-width: 768px) {
+       .payment-module {
+          width: 95%;
+        }
+      }
+
+      @media (max-width: 480px) {
+       .payment-module {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
     <div class="payment-module">
-        <h2>Payment Module</h2>
-        <form>
-            <label for="name">Enter Name:</label>
-            <input type="text" id="name" name="name"><br><br>
-            <label for="total-fees">Total Fees:</label>
-            <input type="number" id="total-fees" name="total-fees"><br><br>
-            <label for="paid-fees">Paid Fees:</label>
-            <input type="number" id="paid-fees" name="paid-fees"><br><br>
-            <label for="payment-mode">Payment mode:</label>
+      <h2>Payment Module</h2>
+      <form>
+        <label for="name">Enter Name:</label>
+        <input type="text" id="name" /><br /><br />
+        <label for="total-fees">Total Fees:</label>
+        <input type="number" id="total-fees" /><br /><br />
+        <label for="paid-fees">Paid Fees:</label>
+        <input type="number" id="paid-fees" /><br /><br />
+        <label>Payment mode:</label><br />
+        <input type="radio" id="cheque" name="payment-method" value="cheque" />
+        <label for="cheque">Cheque</label>
+        <input type="radio" id="upi" name="payment-method" value="upi" />
+        <label for="upi">UPI</label>
+        <input type="radio" id="cash" name="payment-method" value="cash" />
+        <label for="cash">Cash</label><br /><br />
+        
+        <div class="payment-details" id="cheque-details">
+          <label for="cheque-number">Cheque Number:</label>
+          <input type="text" id="cheque-number" /><br /><br />
+          <label for="amount">Enter amount:</label>
+          <input type="text" id="amount" /><br /><br />
+        </div>
+        <div class="payment-details" id="upi-details">
+          <label for="upi-id">UPI ID:</label>
+          <input type="text" id="upi-id" /><br /><br />
+          <label for="upi-amount">Enter amount:</label>
+          <input type="text" id="upi-amount" /><br /><br />
+        </div>
+        <div class="payment-details" id="cash-details">
+          <label for="cash-amount">Cash amount:</label>
+          <input type="text" id="cash-amount" /><br /><br />
+        </div>
 
-            <div class="payment-methods">
-                <div class="payment-method">
-                    
-                    <input type="radio" id="cheque" name="payment-method" value="cheque">
-                    <label for="cheque">Cheque</label>
-                </div>
-                <div class="payment-method">
-                    <input type="radio" id="upi" name="payment-method" value="upi">
-                    <label for="upi">UPI</label>
-                </div>
-                <div class="payment-method">
-                    <input type="radio" id="cash" name="payment-method" value="cash">
-                    <label for="cash">Cash</label>
-                </div>
-            </div>
-            <p id="remaining-fees">Remaining Fees: <span id="remaining-amount">0</span></p>
-            <button id="convert-pdf">Save as PDF</button>
-        </form>
+        <p>Remaining Fees: <span id="remaining-amount">0</span></p>
+        <button type="button" id="convert-pdf">Save as PDF</button>
+      </form>
     </div>
 
     <script>
-        const totalFeesInput = document.getElementById('total-fees');
-        const paidFeesInput = document.getElementById('paid-fees');
-        const remainingFeesElement = document.getElementById('remaining-amount');
-        const paymentMethodSelect = document.getElementById('payment-method');
+      document.getElementById("total-fees").addEventListener("input", calculateRemainingFees);
+      document.getElementById("paid-fees").addEventListener("input", calculateRemainingFees);
+      document.getElementsByName("payment-method").forEach(el => el.addEventListener("change", showPaymentDetails));
+      document.getElementById("convert-pdf").addEventListener("click", convertToPdf);
 
-        totalFeesInput.addEventListener('input', calculateRemainingFees);
-        paidFeesInput.addEventListener('input', calculateRemainingFees);
+      function calculateRemainingFees() {
+        const total = parseInt(document.getElementById("total-fees").value) || 0;
+        const paid = parseInt(document.getElementById("paid-fees").value) || 0;
+        document.getElementById("remaining-amount").textContent = total - paid;
+      }
 
-        function calculateRemainingFees() {
-            const totalFees = parseInt(totalFeesInput.value);
-            const paidFees = parseInt(paidFeesInput.value);
-            const remainingFees = totalFees - paidFees;
-            remainingFeesElement.textContent = remainingFees;
-        }                                       
+      function showPaymentDetails(event) {
+        document.querySelectorAll(".payment-details").forEach(el => el.style.display = "none");
+        document.getElementById(event.target.value + "-details").style.display = "block";
+      }
 
-        paymentMethodSelect.addEventListener('change', showPaymentDetails);
+      function convertToPdf() {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+        const paymentMethod = document.querySelector('input[name="payment-method"]:checked')?.value || 'None';
+        const details = {
+          cheque: `Cheque Number: ${document.getElementById("cheque-number").value}\nAmount: ${document.getElementById("amount").value}`,
+          upi: `UPI ID: ${document.getElementById("upi-id").value}\nAmount: ${document.getElementById("upi-amount").value}`,
+          cash: `Cash Amount: ${document.getElementById("cash-amount").value}`
+        };
 
-        function showPaymentDetails() {
-            const paymentMethod = paymentMethodSelect.value;
-            console.log(`${paymentMethod} details shown`);
-        }
+        doc.text(`Name: ${document.getElementById("name").value}`, 10, 10);
+        doc.text(`Total Fees: ${document.getElementById("total-fees").value}`, 10, 20);
+        doc.text(`Paid Fees: ${document.getElementById("paid-fees").value}`, 10, 30);
+        doc.text(`Remaining Fees: ${document.getElementById("remaining-amount").textContent}`, 10, 40);
+        doc.text(`Payment Method: ${paymentMethod}`, 10, 50);
+        doc.text(details[paymentMethod] || '', 10, 60);
 
-        const convertPdfButton = document.getElementById('convert-pdf');
-        convertPdfButton.addEventListener('click', convertToPdf);
-        
-
+        doc.save("payment-details.pdf");
+      }
     </script>
-
-</body>
+  </body>
 </html>
