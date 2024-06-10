@@ -1,0 +1,45 @@
+<html>
+  <head>
+    <title>Digital Clock</title>
+  </head>
+  <style>
+    h1 {
+        font-family: Arial, sans-serif;
+        font-size: 48px;
+        font-weight: bold;
+        height: 100px;
+        width: 300;
+        margin-left: 150px;
+        margin-top: 50px;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        background: linear-gradient(to right, #000000ae, #ff0000, #ccc);
+              
+    }
+
+  </style>
+
+  <body>
+    <h1 id="clock"></h1>
+    <script>
+      function updateClock() {
+        var currentTime = new Date();
+        var hours = currentTime.getHours();
+        var minutes = currentTime.getMinutes();
+        var seconds = currentTime.getSeconds();
+        var ampm = hours >= 12? "PM" : "AM";
+        hours = hours % 12;
+        hours = hours? hours : 12;
+        minutes = minutes < 10? "0" + minutes : minutes;
+        seconds = seconds < 10? "0" + seconds : seconds;
+        var clockTime = hours + ":" + minutes + ":" + seconds + " " + ampm;
+        document.getElementById("clock").innerHTML = clockTime;
+      }
+      updateClock();
+      setInterval(updateClock, 1000);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimum of Two Numbers</title>
+</head>
+<body>
+
+    <h2>Find the Minimum of Two Numbers</h2>
+
+    <label for="num1">Enter the first number:</label>
+    <input type="number" id="num1" required>
+    <br><br>
+
+    <label for="num2">Enter the second number:</label>
+    <input type="number" id="num2" required>
+    <br><br>
+
+    <button onclick="findMinimum()">Find</button>
+    <br><br>
+
+    <p id="result"></p>
+
+    <script>
+        function findMinimum() {
+            const num1 = parseFloat(document.getElementById('num1').value);
+            const num2 = parseFloat(document.getElementById('num2').value);
+
+            if (isNaN(num1) || isNaN(num2)) {
+                document.getElementById('result').innerText = 'Please enter valid numbers.';
+                return;
+            }
+
+            const minimum = Math.min(num1, num2);
+
+            document.getElementById('result').innerText = `The minimum number is ${minimum}.`;
+        }
+    </script>
+
+</body>
+</html>

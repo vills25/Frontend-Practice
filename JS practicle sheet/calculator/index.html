@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>Mathematical Operations</h1>
+    <form>
+      <label for="num1">Number 1:</label>
+      <input type="number" id="num1" value="0" /><br /><br />
+      <label for="num2">Number 2:</label>
+      <input type="number" id="num2" value="0" /><br /><br />
+      <label for="operation">Operation:</label>
+      <select id="operation">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+        <option value="%">%</option></select
+      ><br /><br />
+      <button onclick="performOperation(event)">Calculate</button>
+    </form>
+    <p>The result is: <span id="result"></span></p>
+
+    <script>
+      function performOperation(event) {
+        event.preventDefault(); // prevent form submission
+        const num1 = parseFloat(document.getElementById("num1").value);
+        const num2 = parseFloat(document.getElementById("num2").value);
+        const operation = document.getElementById("operation").value;
+
+        let result;
+        switch (operation) {
+          case "+":
+            result = num1 + num2;
+            break;
+          case "-":
+            result = num1 - num2;
+            break;
+          case "*":
+            result = num1 * num2;
+            break;
+          case "/":
+            if (num2 !== 0) {
+              result = num1 / num2;
+            } else {
+              result = "Error: Division by zero";
+            }
+            break;
+          case "%":
+            if (num2 !== 0) {
+              result = num1 % num2;
+            } else {
+              result = "Error: Division by zero";
+            }
+            break;
+          default:
+            result = "Invalid operation";
+        }
+
+        document.getElementById("result").innerHTML = result;
+      }
+    </script>
+  </body>
+</html>

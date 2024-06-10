@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Change Menu Bar Color on Scroll</title>
+    <style>
+        body {
+            height: 2000px;
+            margin: 0;
+        }
+
+        .menubar {
+            position: fixed;
+            width: 100%;
+            background-color: blue;
+            padding: 20px;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+
+        .top {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="menubar" id="menubar">
+        Menu Bar
+    </div>
+
+    <script>
+        window.addEventListener('scroll', function() {
+            const menubar = document.getElementById('menubar');
+            if (window.scrollY === 0) {
+                menubar.classList.add('top');
+            } else {
+                menubar.classList.remove('top');
+            }
+        });
+    </script>
+
+</body>
+</html>
