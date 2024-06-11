@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Number Counter</title>
+  <style>
+    /* CSS styles */
+    .numbers-container {
+      height: 100vh;
+      overflow-y: auto;
+    }
+    .number {
+      font-size: 24px;
+      margin: 10px;
+    }
+  </style>
+</head>
+<body>
+  <!-- HTML content -->
+  <div class="numbers-container">
+    <div class="number">910</div>
+    <div class="number">1399</div>
+    <div class="number">1777</div>
+    <div class="number">2254</div>
+    <div class="number">910</div>
+    <div class="number">1399</div>
+    <div class="number">1777</div>
+    <div class="number">2254</div>
+  </div>
+
+  <!-- JavaScript code -->
+  <script>
+    let numbers = [910, 1399, 1777, 2254];
+    let count = 0;
+
+    window.addEventListener('scroll', () => {
+      let numbersContainer = document.querySelector('.numbers-container');
+      let numbersElements = numbersContainer.querySelectorAll('.number');
+
+      numbersElements.forEach((element) => {
+        let number = parseInt(element.textContent);
+        if (numbers.includes(number)) {
+          count++;
+        }
+      });
+
+      console.log(`Number of numbers found: ${count}`);
+    });
+  </script>
+</body>
+</html>
