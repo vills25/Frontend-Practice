@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .calculator {
+        width: 340px;
+        margin: auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #3b2a6d;
+      }
+
+      input {
+        color: black;
+        width: 82%;
+        margin-bottom: 10px;
+        padding: 20px;
+        font-size: 24px;
+        text-align: center;
+      }
+
+      text {
+        align-items: center;
+      }
+
+      .buttons {
+        justify-content: center;
+      }
+
+      .buttons button {
+        align-items: center;
+        width: 20%;
+        padding: 10px;
+        font-size: 20px;
+        margin: 5px;
+        border-radius: 20%;
+
+      }
+
+      .buttons button:hover{
+        background-color: rgba(47, 38, 38, 0.525);
+        color: rgb(112, 200, 203);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="calculator">
+      <input type="text" id="result" disabled />
+      <div class="buttons">
+        <button onclick="clearResult()">C</button>
+
+        <button onclick="deleteChar()">DEL</button>
+
+        <button onclick="appendValue('%')">%</button>
+        <button onclick="appendValue('/')">/</button>
+        <button onclick="appendValue('7')">7</button>
+        <button onclick="appendValue('8')">8</button>
+        <button onclick="appendValue('9')">9</button>
+
+        <button onclick="appendValue('*')">*</button>
+        <button onclick="appendValue('4')">4</button>
+        <button onclick="appendValue('5')">5</button>
+        <button onclick="appendValue('6')">6</button>
+        <button onclick="appendValue('-')">-</button>
+        <button onclick="appendValue('1')">1</button>
+        <button onclick="appendValue('2')">2</button>
+        <button onclick="appendValue('3')">3</button>
+
+        <button onclick="appendValue('+')">+</button>
+
+        <button onclick="appendValue('0')">0</button>
+        <button onclick="appendValue('.')">.</button>
+        <button onclick="calculate()">=</button>
+      </div>
+    </div>
+    <script>
+      const result = document.getElementById("result");
+
+      function appendValue(value) {
+        result.value += value;
+      }
+
+      function clearResult() {
+        result.value = "";
+      }
+
+      function deleteChar() {
+        result.value = result.value.slice(0, -1);
+      }
+
+      function calculate() {
+        result.value = eval(result.value);
+      }
+    </script>
+  </body>
+</html>

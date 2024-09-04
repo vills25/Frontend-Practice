@@ -66,6 +66,11 @@ input[type='text']{
     border-radius: .5rem;
 }
 
+input[type='datetime-local']{
+    padding: .7rem .75rem;
+    border-radius: .5rem;
+}
+
 .add-task-btn{
     background-color: var(--clr-primary-btn);
 }
@@ -94,6 +99,10 @@ li:hover{
 li * {
     margin: .5rem;
 }
+
+li span {
+    flex: 1;
+  }
 
 .compelete-btn{
     color: var(--clr-compelete-btn);

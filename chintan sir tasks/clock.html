@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+        
+      #clock {
+        font-family: Arial, sans-serif;
+        font-size: 48px;
+        color: #ffffff;
+        height: 100px;
+        margin-top: 50px;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        border:5px solid #000000;
+        background: linear-gradient(to top,#ff0000, #000000ae,#000000ae, #ff0000);
+      }
+    </style>  
+  </head>
+  <body>
+    <div id="clock"></div>
+    <script>
+      function showTime() {
+        const date = new Date();
+        date.setHours(date.getHours() + 5.5);
+
+        const hours = date.getHours();
+        const minutes = date.getMinutes();
+        const seconds = date.getSeconds();
+        
+        const formattedTime = `${hours.toString().padStart(2, "0")}:${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
+
+        document.getElementById("clock").textContent = formattedTime;
+    }
+      setInterval(showTime, 1000);
+      showTime();
+    </script>
+  </body>
+</html>

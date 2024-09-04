@@ -2,11 +2,15 @@ let tasks = [];
 
 function addTask() {
   const taskInput = document.getElementById('taskInput');
+  const dateTimeInput = document.getElementById('task');
   const taskName = taskInput.value.trim();
-  if (taskName) {
-    tasks.push({ id: Date.now(), name: taskName, completed: false });
+  const taskDateTime = dateTimeInput.value;
+  
+  if (taskName && taskDateTime) {
+    tasks.push({ id: Date.now(), name: taskName, dateTime: taskDateTime, completed: false });
     renderTasks();
     taskInput.value = '';
+    dateTimeInput.value = '';
   }
 }
 
@@ -29,7 +33,11 @@ function renderTasks() {
   taskList.innerHTML = '';
   tasks.forEach(task => {
     const listItem = document.createElement('li');
-    listItem.innerHTML = `<span>${task.name}</span><button onclick="toggleCompleted(${task.id})">Complete</button><button onclick="deleteTask(${task.id})">Delete</button>`;
+    listItem.innerHTML = `
+      <span>${task.name}</span>
+      <span>${new Date(task.dateTime).toLocaleString()}</span>
+      <button onclick="toggleCompleted(${task.id})">Complete</button>
+      <button onclick="deleteTask(${task.id})">Delete</button>`;
     if (task.completed) listItem.classList.add('completed');
     taskList.appendChild(listItem);
   });
